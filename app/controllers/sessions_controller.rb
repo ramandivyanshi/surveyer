@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id.to_s
         format.html do
           flash[:success] = 'Successfully logged in!'
-          redirect_to quizzes_path
+          redirect_to surveys_path
         end   
         format.json do
           render status: :ok, json: { notice: 'Successfully logged in!' }

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :surveys, dependent: :restrict_with_error
     before_save { email.downcase! }
     enum role: [:regular_user, :administrator]
     validates :first_name, :last_name, presence: true, length: { maximum: 50 }

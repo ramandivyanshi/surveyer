@@ -51,7 +51,7 @@ class New extends React.Component {
       onError: this.updateAlert,
       onSuccess: this.updateAlert,
       successCallBack: () => {
-        window.location.href = Routes.quizzes_path();
+        window.location.href = Routes.surveys_path();
       },
     });
   };

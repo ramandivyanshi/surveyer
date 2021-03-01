@@ -10,6 +10,6 @@ export function logout_path() {
   return "/sessions";
 }
 
-export function quizzes_path() {
-  return "/quizzes";
+export function surveys_path() {
+  return "/surveys";
 }

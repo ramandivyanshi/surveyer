@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_logged_in
     if logged_in?
-      return redirect_to quizzes_path
+      return redirect_to surveys_path
     end
   end
 end
