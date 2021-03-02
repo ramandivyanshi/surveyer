@@ -13,3 +13,11 @@ export function logout_path() {
 export function surveys_path() {
   return "/surveys";
 }
+
+export function new_survey_path() {
+  return "/surveys/new";
+}
+
+export function add_survey_path() {
+  return "/surveys";
+}

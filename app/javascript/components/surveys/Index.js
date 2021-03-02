@@ -1,6 +1,14 @@
 import React from "react";
+import * as Routes from "../../utils/Routes";
 
 class New extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      survey: { name: "" },
+    };
+  }
+
   render() {
     return (
       <>
@@ -8,7 +16,9 @@ class New extends React.Component {
           <div className="w-100 p-3 d-flex justify-content-between">
             <h1>List of Surveys</h1>
             <button type="button" className="btn btn-primary btn-lg">
-              Add new Survey
+              <a href={Routes.new_survey_path()} style={{ color: "white" }}>
+                Add new Survey
+              </a>
             </button>
           </div>
           <table className="table table-dark">

@@ -5,6 +5,6 @@ class CreateSurveys < ActiveRecord::Migration[6.1]
   
       t.timestamps
     end
-    add_reference :surveys, :users, null: false, foreign_key: {on_delete: :restrict}
+    add_reference :surveys, :user, null: false, foreign_key: {on_delete: :restrict}
   end
 end
