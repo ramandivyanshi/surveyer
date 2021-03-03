@@ -1,8 +1,9 @@
   class SurveysController < ApplicationController
     before_action :ensure_user_not_logged_in
+    before_action :load_survey, only: [:edit, :update, :destroy]
   
     def index
-      render
+      @surveys = Survey.all
     end
 
     def new
