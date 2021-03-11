@@ -1,12 +1,12 @@
-import React from "react";
-import * as Routes from "../../utils/Routes";
-import { fetchApi } from "../../utils/API";
-import Alert from "../../shared/Alert";
-class New extends React.Component {
+import React from 'react';
+import * as Routes from '../../utils/Routes';
+import { fetchApi } from '../../utils/API';
+import Alert from '../../shared/Alert';
+class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      survey: { name: "" },
+      survey: { name: '' },
       alert: {
         message: null,
         type: null,
@@ -37,8 +37,8 @@ class New extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     fetchApi({
-      url: Routes.add_survey_path(),
-      method: "POST",
+      url: Routes.update_survey_path(this.props.survey.id),
+      method: 'PATCH',
       body: {
         survey: this.state.survey,
       },
@@ -50,16 +50,16 @@ class New extends React.Component {
     });
   };
   render() {
+    console.log(this.props.survey.id);
     return (
       <>
         <div className="container mt-5">
           {this.state.alert.message && this.displayErrors()}
-          <h1 className="mb-5">Add new survey</h1>
+          <h1 className="mb-5">Update survey name</h1>
           <form
             className="needs-validation"
             noValidate
-            onSubmit={this.handleSubmit}
-          >
+            onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="col-md-6 mb-3">
                 <label htmlFor="validationTooltip03">survey name</label>
@@ -70,8 +70,7 @@ class New extends React.Component {
                   className="form-control"
                   id="validationTooltip03"
                   required
-                  onChange={this.handleChange}
-                ></input>
+                  onChange={this.handleChange}></input>
                 <div className="invalid-tooltip">
                   Please provide a valid name.
                 </div>
@@ -86,4 +85,4 @@ class New extends React.Component {
     );
   }
 }
-export default New;
+export default Edit;
