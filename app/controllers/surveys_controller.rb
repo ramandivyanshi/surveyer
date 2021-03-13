@@ -1,13 +1,17 @@
 class SurveysController < ApplicationController
   before_action :ensure_user_not_logged_in
-  before_action :load_survey, only: [:edit, :update, :destroy]
+  before_action :load_survey, only: [:show, :edit, :update, :destroy]
 
   def index
-    @surveys = Survey.all
+    @surveys = current_user.surveys
   end
 
   def new
     @survey = Survey.new
+  end
+
+  def show
+    render
   end
 
   def create
@@ -22,29 +26,36 @@ class SurveysController < ApplicationController
       render status: :unprocessable_entity, json: { errors: @survey.errors.full_messages }
     end
   end
+
   def edit
     render
   end
+
   def update
     if @survey.update(survey_params)
+      flash[:success] = "Succesfully updated the survey name."
       render status: :ok, json: { notice: "Successfully updated survey name." }
     else
       render status: :unprocessable_entity, json:{ errors: @task.errors.full_messages }
     end
   end
+
   def destroy
     if @survey.destroy
-      render status: :ok, json: { notice: "Successfully deleted task." }
+      flash[:success] = "Succesfully deleted Survey."
+      render status: :ok, json: { notice: "Successfully deleted survey." }
     else
-      render status: :unprocessable_entity, json: { errors: @task.errors.full_messages }
+      render status: :unprocessable_entity, json: { errors: @survey.errors.full_messages }
     end
   end
+
   private 
   def survey_params
     params.require(:survey).permit(:name, :user_id)
   end
+
   def load_survey
-    @survey = Survey.find(params[:id])
+    @survey = Survey.find(params[:id]) rescue not_found
     rescue ActiveRecord::RecordNotFound => errors
       render json: {errors: errors}
   end

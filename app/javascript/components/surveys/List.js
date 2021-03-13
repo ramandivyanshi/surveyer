@@ -48,7 +48,7 @@ function Table({ columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+                return <td {...cell.getCellProps()}><a href={Routes.show_survey_path(row.original.id)}>{cell.render('Cell')}</a></td>;
               })}
               <td>
                 <button type="button" className="btn btn-warning">

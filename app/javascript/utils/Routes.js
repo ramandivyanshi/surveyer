@@ -25,3 +25,6 @@ export function update_survey_path(id) {
 export function delete_survey_path(id) {
   return `/surveys/${id}`;
 }
+export function show_survey_path(id) {
+  return `/surveys/${id}`;
+}
